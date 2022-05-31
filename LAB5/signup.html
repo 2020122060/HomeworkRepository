@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to 000!</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <a href="index.html">main</a>
+
+      <a href="login.html">sign-in</a>
+      <a href="signup.html" class="active">sign-up</a>
+    </nav>
+
+    <header class="welcome-header">
+      <h1 class="welcome-header__title">
+        000에 오신 것을 환영합니다!<br />
+        회원가입을 통해 서비스를 이용해보세요
+      </h1>
+      <p class="welcome-header__text">이미 회원이신가요?</p>
+      <p class="welcome-header__text">
+        <a href="login.html" id="welcome-header__a"> > 로그인 하러가기</a><br />
+        <a href="index.html" id="welcome-header__a"> > 메인화면 바로가기</a>
+      </p>
+    </header>
+
+    <form action="login.html" method="get" id="signup-form">
+      <p class="signup-form__text">이름:</p>
+      <input
+        name="username"
+        required
+        type="text"
+        autofocus
+        placeholder="What's you are name?"
+      />
+      <p class="signup-form__text">나이(선택):</p>
+      <input
+        name="age"
+        type="number"
+        placeholder="Please write your age"
+        min="0"
+        max="99"
+        step="1"
+      />
+      <p class="signup-form__text">Email:</p>
+      <input
+        name="Email"
+        required
+        type="email"
+        placeholder="Please write your Email"
+      />
+      <p class="signup-form__text">전화번호:</p>
+      <input
+        name="Phone number"
+        required
+        type="tel"
+        pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+        placeholder="(010)-####-####"
+      />
+      <p class="signup-form__text">비밀번호:</p>
+      <input name="password" required type="password" placeholder="Password" />
+
+      <p class="signup-form__text">비밀번호 확인:</p>
+      <input
+        name="identify password"
+        required
+        type="password"
+        placeholder="Identify password again"
+      />
+      <input type="submit" value="Sign Up" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to 000!</title>
+    <link rel="stylesheet" href="main.css" type="text/css" />
+  </head>
+
+  <body>
+    <nav class="main-nav">
+      <a href="index.html">main</a>
+
+      <a href="login.html" class="active">sign-in</a>
+      <a href="signup.html">sign-up</a>
+    </nav>
+
+    <header class="welcome-header">
+      <h1 class="welcome-header__title">
+        000에 오신 것을 환영합니다!<br />
+        로그인을 통해 서비스를 이용해보세요
+      </h1>
+      <p class="welcome-header__text">000이 처음이신가요?</p>
+      <p class="welcome-header__text">
+        <a href="signup.html"> > 회원가입 하러가기</a><br />
+        <a href="index.html" id="welcome-header__a"> > 메인화면 바로가기</a>
+      </p>
+    </header>
+
+    <form action="index.html" method="get" id="login-form">
+      <input
+        name="username"
+        required
+        type="text"
+        placeholder="Email or phone number"
+      />
+      <input name="password" required type="password" placeholder="Password" />
+      <input type="submit" value="Log In" />
+    </form>
+  </body>
+</html>
