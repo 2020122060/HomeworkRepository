@@ -1,15 +1,5 @@
 //fetch
 
-fetch("product.json")
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then((json) => initialize(json))
-  .catch((err) => console.error(`Fetch problem: ${err.message}`));
-
 function initialize(products) {
   const category = document.querySelector("#category");
   const searchTerm = document.querySelector("#searchTerm");
@@ -67,6 +57,7 @@ function initialize(products) {
         product.name.includes(lowerCaseSearchTerm)
       );
     }
+
     updateDisplay();
   }
 
@@ -103,11 +94,14 @@ function initialize(products) {
     const objectURL = URL.createObjectURL(blob);
 
     const section = document.createElement("section");
+    const btn = document.createElement("button");
     const heading = document.createElement("h2");
     const para = document.createElement("p");
     const image = document.createElement("img");
 
-    section.setAttribute("class", product.type);
+    const form = document.createElement("form");
+
+    section.setAttribute("class", "section");
 
     heading.textContent = product.name.replace(
       product.name.charAt(0),
@@ -116,12 +110,61 @@ function initialize(products) {
 
     para.textContent = `$${product.price.toFixed(2)}`;
 
+    btn.innerText = "설명 보기!";
+
     image.src = objectURL;
     image.alt = product.name;
 
+    heading.hidden = true;
+    para.hidden = true;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (heading.hidden === true) {
+        btn.innerText = "설명 그만 보기!";
+        heading.hidden = false;
+        para.hidden = false;
+      } else {
+        btn.innerText = "설명 보기!";
+        heading.hidden = true;
+        para.hidden = true;
+      }
+    });
     main.appendChild(section);
-    section.appendChild(heading);
-    section.appendChild(para);
+    section.appendChild(form);
+    form.appendChild(btn);
+    form.appendChild(heading);
+    form.appendChild(para);
     section.appendChild(image);
   }
+}
+let counter = 1;
+
+load();
+
+document.addEventListener("DOMcontentLoaded", load);
+
+window.onscroll = () => {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+    load();
+  }
+};
+
+//
+
+function load() {
+  //
+  const start = counter;
+  const end = start + 1;
+  counter = end + 1;
+  //
+  fetch("product.json")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((json) => initialize(json))
+    .catch((err) => console.error(`Fetch problem: ${err.message}`));
 }
